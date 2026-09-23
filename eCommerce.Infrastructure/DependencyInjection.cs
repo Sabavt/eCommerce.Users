@@ -13,7 +13,7 @@ public static class DependencyInjection
     /// <returns>Returns dependency injection container with added infrastructure services</returns>
     public static IServiceCollection AddInfrastructure(this IServiceCollection services)
     {
-        services.AddScoped<IUsersRepository, UsersRepository>();
+        services.AddSingleton<IUsersRepository, UsersRepository>();
 
         return services;
     }

@@ -11,14 +11,14 @@ internal class UsersService(IUsersRepository repository) : IUsersService
 
     public async Task<AuthenticationResponse?> Login(LoginRequest userLoginRequest)
     {
-        var user = await _repository.GetUserByEmailAndPassword(userLoginRequest.Email, userLoginRequest.Password);
+        var loggedInUser = await _repository.GetUserByEmailAndPassword(userLoginRequest.Email, userLoginRequest.Password);
 
-        if (user is null)
+        if (loggedInUser is null)
         {
             return null;
         }
 
-        return new AuthenticationResponse(user.UserID, user.Email, user.Name, user.Gender, "", true);
+        return new AuthenticationResponse(loggedInUser.UserID, loggedInUser.Email, loggedInUser.Name, loggedInUser.Gender, "", true);
     }
 
     public async Task<AuthenticationResponse?> Register(RegisterRequest userRegisterRequest)
@@ -31,13 +31,13 @@ internal class UsersService(IUsersRepository repository) : IUsersService
             Password = userRegisterRequest.Password 
         };
 
-        var user = await _repository.AddUser(userToAdd);
+        var registeredUser = await _repository.AddUser(userToAdd);
 
-        if (user is null)
+        if (registeredUser is null)
         {
             return null;
         }
 
-        return new AuthenticationResponse(user.UserID, user.Email, user.Name, user.Gender, "", true);
+        return new AuthenticationResponse(registeredUser.UserID, registeredUser.Email, registeredUser.Name, registeredUser.Gender, "", true);
     }
 }
