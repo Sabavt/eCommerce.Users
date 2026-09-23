@@ -2,4 +2,6 @@
 
 public enum GenderOptions
 {
+    Male,
+    Female
 }
