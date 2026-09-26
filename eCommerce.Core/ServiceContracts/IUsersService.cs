@@ -5,7 +5,7 @@ namespace eCommerce.Core.ServiceContracts;
 /// <summary>
 /// Represents common logic for authenticating users
 /// </summary>
-internal interface IUsersService
+public interface IUsersService
 {
     /// <summary>
     /// Method to handle user login and return appropriate authentication response
