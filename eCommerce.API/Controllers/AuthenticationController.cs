@@ -38,6 +38,6 @@ public class AuthenticationController : ControllerBase
             return Ok(result);
         }
 
-        return BadRequest(result);
+        return Unauthorized(result);
     }
 }

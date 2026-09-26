@@ -1,24 +1,35 @@
 using eCommerce.API.Middlewares;
 using eCommerce.Core;
-using eCommerce.Infrastructure;
+using eCommerce.Core.Mappers;
+using eCommerce.Infrastructure; 
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddInfrastructure();
 builder.Services.AddCore();
-builder.Services.AddControllers();
+builder.Services
+    .AddControllers()
+    .AddJsonOptions(opt => 
+    opt.JsonSerializerOptions.Converters
+    .Add(new JsonStringEnumConverter())
+    ); 
+
+builder.Services.AddAutoMapper(cfg => {
+    cfg.AddProfile<ApplicationUserMappingProfile>(); 
+    cfg.AddProfile<RegisterRequestMappingProfile>(); 
+});
 
 var app = builder.Build();
 
 app.UseExceptionHandlingMiddleware();
-app.UseExceptionHandler("/Error");
+app.UseExceptionHandler(errorHandlingPath: "/Error");
 app.UseHsts();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseCors();
 app.UseAuthentication();
-app.UseAuthorization();
-app.UseSession();
+app.UseAuthorization(); 
 app.MapControllers();
 
-app.Run();
+app.Run(); 

@@ -1,13 +1,15 @@
-﻿using eCommerce.Core.Domain.Entities;
+﻿using AutoMapper;
+using eCommerce.Core.Domain.Entities;
 using eCommerce.Core.Domain.RepositoryContracts;
 using eCommerce.Core.DTO;
-using eCommerce.Core.ServiceContracts;
+using eCommerce.Core.ServiceContracts; 
 
 namespace eCommerce.Core.Services;
 
-internal class UsersService(IUsersRepository repository) : IUsersService
+internal class UsersService(IUsersRepository repository, IMapper mapper) : IUsersService
 {
     private readonly IUsersRepository _repository = repository;
+    private readonly IMapper _mapper = mapper;
 
     public async Task<AuthenticationResponse?> Login(LoginRequest userLoginRequest)
     {
@@ -18,18 +20,12 @@ internal class UsersService(IUsersRepository repository) : IUsersService
             return null;
         }
 
-        return new AuthenticationResponse(loggedInUser.UserID, loggedInUser.Email, loggedInUser.Name, loggedInUser.Gender, "", true);
+        return _mapper.Map<AuthenticationResponse>(loggedInUser) with { Success = true, Token = "token" }; 
     }
 
     public async Task<AuthenticationResponse?> Register(RegisterRequest userRegisterRequest)
     {
-        var userToAdd = new ApplicationUser()
-        {
-            Name = userRegisterRequest.PersonName,
-            Email = userRegisterRequest.Email,
-            Gender = userRegisterRequest.Gender.ToString(),
-            Password = userRegisterRequest.Password 
-        };
+        var userToAdd = _mapper.Map<ApplicationUser>(userRegisterRequest);
 
         var registeredUser = await _repository.AddUser(userToAdd);
 
@@ -38,6 +34,6 @@ internal class UsersService(IUsersRepository repository) : IUsersService
             return null;
         }
 
-        return new AuthenticationResponse(registeredUser.UserID, registeredUser.Email, registeredUser.Name, registeredUser.Gender, "", true);
+        return _mapper.Map<AuthenticationResponse>(registeredUser) with { Success = true, Token = "token" };
     }
 }
