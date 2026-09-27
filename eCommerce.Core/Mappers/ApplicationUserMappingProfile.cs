@@ -10,7 +10,7 @@ public class ApplicationUserMappingProfile : Profile
     {
         CreateMap<ApplicationUser, AuthenticationResponse>()
             .ForMember(dst => dst.PersonName,
-            opt => opt.MapFrom(src => src.Name)
+            opt => opt.MapFrom(src => src.PersonName)
             );
     }
 }

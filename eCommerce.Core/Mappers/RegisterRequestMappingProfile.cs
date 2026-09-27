@@ -8,7 +8,6 @@ public class RegisterRequestMappingProfile : Profile
 {
     public RegisterRequestMappingProfile()
     {
-        CreateMap<RegisterRequest, ApplicationUser>().ForMember(dst => dst.Name,
-            opt => opt.MapFrom(src => src.PersonName));
+        CreateMap<RegisterRequest, ApplicationUser>();
     }
 }

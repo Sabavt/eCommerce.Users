@@ -10,7 +10,7 @@ public class DapperDbContext
     private readonly IDbConnection _connection;
 
     public DapperDbContext(IConfiguration configuration)
-    {
+    {   
         _configuration = configuration;
 
         string connectionString =
@@ -20,4 +20,4 @@ public class DapperDbContext
     }
 
     public IDbConnection DbConnection => _connection;
-}
+} 
