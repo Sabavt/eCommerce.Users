@@ -1,8 +1,6 @@
-﻿using AutoMapper;
-using Dapper;
+﻿using Dapper;
 using eCommerce.Core.Domain.Entities;
-using eCommerce.Core.Domain.RepositoryContracts;
-using eCommerce.Core.Enums;
+using eCommerce.Core.Domain.RepositoryContracts; 
 using eCommerce.Infrastructure.DatabaseContext; 
 
 namespace eCommerce.Infrastructure.Repositories;

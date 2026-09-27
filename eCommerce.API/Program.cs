@@ -28,8 +28,7 @@ builder.Services.AddCors(opt => opt.AddDefaultPolicy(plc => plc.AllowAnyMethod()
 
 var app = builder.Build();
 
-app.UseExceptionHandlingMiddleware();
-app.UseExceptionHandler(errorHandlingPath: "/Error");
+app.UseExceptionHandlingMiddleware(); 
 app.UseHsts();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
