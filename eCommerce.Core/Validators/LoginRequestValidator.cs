@@ -14,4 +14,4 @@ public class LoginRequestValidator : AbstractValidator<LoginRequest>
         RuleFor(tmp => tmp.Password)
             .NotEmpty().WithMessage("Password must not be empty");
     }
-}
+} 
