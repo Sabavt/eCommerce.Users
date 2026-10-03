@@ -10,4 +10,4 @@ public class RegisterRequestMappingProfile : Profile
     {
         CreateMap<RegisterRequest, ApplicationUser>();
     }
-}
+} 

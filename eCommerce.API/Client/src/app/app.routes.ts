@@ -4,8 +4,8 @@ import { LoginComponent } from './components/login/login.component';
 import { ShowCaseComponent } from './products/show-case/show-case.component';
 
 export const routes: Routes = [
-    { path: 'auth/register', component: RegisterComponent },
-    { path: 'auth/login', component: LoginComponent },
+  { path: 'authentication/register', component: RegisterComponent },
+  { path: 'authentication/login', component: LoginComponent },
     { path: 'products/showcase', component: ShowCaseComponent },
-    { path: '', redirectTo: '/auth/login', pathMatch: 'full' },
+    { path: '', redirectTo: '/authentication/login', pathMatch: 'full' },
 ];

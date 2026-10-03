@@ -13,7 +13,7 @@ builder.Services
     .AddJsonOptions(opt => 
     opt.JsonSerializerOptions.Converters
     .Add(new JsonStringEnumConverter())
-    ); 
+    );  
 
 builder.Services.AddAutoMapper(cfg => {
     cfg.AddProfile<ApplicationUserMappingProfile>(); 
