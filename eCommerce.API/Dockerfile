@@ -4,8 +4,8 @@
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS base
 USER $APP_UID
 WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
+EXPOSE 5050
+EXPOSE 5051
 
 
 # This stage is used to build the service project
@@ -24,10 +24,10 @@ ARG BUILD_CONFIGURATION=Release
 RUN dotnet publish "./eCommerce.API.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 # This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
-FROM base AS final
+FROM base AS final 
+WORKDIR /app
+COPY --from=publish /app/publish .
 ENV POSTGRES_USER=postgres
 ENV POSTGRES_PASSWORD=kbiladze
 ENV POSTGRES_HOST=localhost
-WORKDIR /app
-COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "eCommerce.API.dll"]
