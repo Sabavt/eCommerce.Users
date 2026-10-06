@@ -42,4 +42,17 @@ internal class UsersRepository(DapperDbContext dbContext) : IUsersRepository
 
         return result;
     }
+
+    public async Task<ApplicationUser?> GetUserByUserID(Guid userID)
+    {
+        string query = """
+    SELECT *
+    FROM "Users"
+    WHERE "UserID" = @UserID
+    """;
+
+        var result = await _dapperDbContext.DbConnection.QueryFirstOrDefaultAsync<ApplicationUser>(query, new {UserID = userID});
+
+        return result;
+    }
 }

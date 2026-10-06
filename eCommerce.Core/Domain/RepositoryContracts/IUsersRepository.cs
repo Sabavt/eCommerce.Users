@@ -18,4 +18,11 @@ public interface IUsersRepository
     /// <param name="password">Password to search</param>
     /// <returns>Returns retrieved user, but in case of not found then null</returns>
     Task<ApplicationUser?> GetUserByEmailAndPassword(string? email, string? password);
-}
+
+    /// <summary>
+    /// Method to search existing user using user ID
+    /// </summary>
+    /// <param name="userID">UserID to search</param>
+    /// <returns>Returns retrieved user, but in case of not found then null</returns>
+    Task<ApplicationUser?> GetUserByUserID(Guid userID);
+} 
