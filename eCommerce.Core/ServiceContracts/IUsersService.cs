@@ -20,4 +20,11 @@ public interface IUsersService
     /// <param name="userRegisterRequest">Register inputs to give</param>
     /// <returns>Returns automatically generated AuthenticationResponse if registering was successful</returns>
     Task<AuthenticationResponse?> Register(RegisterRequest userRegisterRequest);
+
+    /// <summary>
+    /// Method to get user details by userID
+    /// </summary>
+    /// <param name="user">UserDTO containing the userID to search</param>
+    /// <returns>Returns retrieved user details, but in case of not found then null</returns>
+    Task<UserDTO?> GetUserByUserID(UserDTO user);
 }
