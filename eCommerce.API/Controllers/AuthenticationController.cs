@@ -40,4 +40,15 @@ public class AuthenticationController : ControllerBase
 
         return Unauthorized(result);
     }
+
+    [HttpGet("[action]")]
+    public async Task<IActionResult> GetUserByUserID(UserDTO user)
+    {
+        var result = await _usersService.GetUserByUserID(user);
+        if (result is not null)
+        {
+            return Ok(result);
+        }
+        return NotFound(result);
+    }
 }
