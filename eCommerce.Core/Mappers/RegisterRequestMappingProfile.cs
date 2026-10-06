@@ -8,6 +8,6 @@ public class RegisterRequestMappingProfile : Profile
 {
     public RegisterRequestMappingProfile()
     {
-        CreateMap<RegisterRequest, ApplicationUser>();
+        CreateMap<RegisterRequest, ApplicationUser>().ReverseMap();
     }
 } 
