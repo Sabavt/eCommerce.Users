@@ -41,10 +41,10 @@ public class AuthenticationController : ControllerBase
         return Unauthorized(result);
     }
 
-    [HttpGet("[action]")]
-    public async Task<IActionResult> GetUserByUserID(UserDTO user)
+    [HttpGet("[action]/{userID:guid}")]
+    public async Task<IActionResult> GetUserByUserID(Guid userID)
     {
-        var result = await _usersService.GetUserByUserID(user);
+        var result = await _usersService.GetUserByUserID(userID);
         if (result is not null)
         {
             return Ok(result);

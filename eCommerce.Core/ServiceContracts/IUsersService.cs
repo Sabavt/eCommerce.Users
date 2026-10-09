@@ -26,5 +26,5 @@ public interface IUsersService
     /// </summary>
     /// <param name="user">UserDTO containing the userID to search</param>
     /// <returns>Returns retrieved user details, but in case of not found then null</returns>
-    Task<UserDTO?> GetUserByUserID(UserDTO user);
+    Task<UserDTO?> GetUserByUserID(Guid user);
 }
