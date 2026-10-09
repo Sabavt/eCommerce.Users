@@ -14,11 +14,7 @@ builder.Services
     opt.JsonSerializerOptions.Converters
     .Add(new JsonStringEnumConverter())
     );  
-
-builder.Services.AddAutoMapper(cfg => {
-    cfg.AddProfile<ApplicationUserMappingProfile>(); 
-    cfg.AddProfile<RegisterRequestMappingProfile>(); 
-});
+ 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors(opt => opt.AddDefaultPolicy(plc => plc.AllowAnyMethod()

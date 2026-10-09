@@ -1,4 +1,5 @@
-﻿using eCommerce.Core.ServiceContracts;
+﻿using eCommerce.Core.Mappers;
+using eCommerce.Core.ServiceContracts;
 using eCommerce.Core.Services;
 using eCommerce.Core.Validators;
 using FluentValidation;
@@ -17,6 +18,11 @@ public static class DependencyInjection
     {
         services.AddSingleton<IUsersService, UsersService>();
         services.AddValidatorsFromAssemblyContaining<LoginRequestValidator>();
+        services.AddAutoMapper(cfg => {
+            cfg.AddProfile<ApplicationUserMappingProfile>();
+            cfg.AddProfile<RegisterRequestMappingProfile>();
+            cfg.AddProfile<UserDTOMappingProfile>();
+        });
 
         return services;
     }
